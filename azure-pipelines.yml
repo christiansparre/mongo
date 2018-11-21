@@ -1,0 +1,15 @@
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+steps:
+- script: docker build -t sparreio/mongo:3.4-jessie-no-volume-definitions .
+  displayName: 'Build mongo:3.4 image'
+  workingDirectory: $(System.DefaultWorkingDirectory)/3.4
+
+- task: Docker@1
+  displayName: 'Push mongo:3.4 image'
+  inputs:
+    containerRegistryType: Container Registry
+    dockerRegistryEndpoint: 'hub.docker.com - sparreio'
+    imageName: sparreio/mongo:3.4-jessie-no-volume-definitions
+    command: 'push'
