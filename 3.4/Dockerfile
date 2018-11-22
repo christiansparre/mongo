@@ -87,9 +87,9 @@ RUN set -x \
 RUN mkdir -p /data/db /data/configdb \
 	&& chown -R mongodb:mongodb /data/db /data/configdb
 
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
-ENTRYPOINT ["docker-entrypoint.sh"]
+#COPY docker-entrypoint.sh /usr/local/bin/
+#RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
+#ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 27017
 CMD ["mongod"]
